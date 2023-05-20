@@ -40,6 +40,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Videogame,Genre } = sequelize.models;
 
+sequelize.sync({ force: true }) // Set `force` to `true` to recreate tables on every application restart
+  .then(() => {
+    console.log('Database synced');
+  })
+  .catch((error) => {
+    console.error('Error syncing database:', error);
+  });
+
+
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 

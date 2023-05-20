@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const Type = sequelize.define('Genre', {
+  const Genre = sequelize.define('Genre', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -11,9 +11,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  }, {
-    timestamps: false,
   });
 
-  return genre;
+  return Genre;
 };
