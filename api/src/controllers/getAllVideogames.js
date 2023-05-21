@@ -22,7 +22,7 @@ const getAllVideogames = async () => {
       page++;
     }
     //retorna el array cuando llegue a 100 posiciones, incluso si falta alguna posicion en alguna pagina 
-    //!(chequear)
+    
     return allVideoGamesArray;
   };
   

@@ -1,9 +1,9 @@
 //getAllVideoGamesHandler
 const getAllVideogames = require('../controllers/getAllVideogames')
 
-const getAllVideogamesHandler = (req,res)=>{
+const getAllVideogamesHandler = async(req,res)=>{
     try {
-        const videogames = getAllVideogames();
+        const videogames = await getAllVideogames();
         res.status(200).json(videogames)
         
     } catch (error) {
