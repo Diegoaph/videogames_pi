@@ -40,7 +40,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Videogame,Genre } = sequelize.models;
 
-sequelize.sync({ force: true }) // Set `force` to `true` to recreate tables on every application restart
+sequelize.sync({ force: false }) // Set `force` to `true` to recreate tables on every application restart
   .then(() => {
     console.log('Database synced');
   })
