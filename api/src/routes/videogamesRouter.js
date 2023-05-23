@@ -8,15 +8,13 @@ const postVideogame = require("../handlers/postVideogameHandler");
 
 
 const videogamesRouter = Router();
-
-
     videogamesRouter.get("/",getAllVideogames);
 
-// videogamesRouter.get("/name",getVideogameByName);
     videogamesRouter.get("/:idVideogame",getVideogameById);
 
-// videogamesRouter.post("/create",postVideogame)
-
-
+    
+    // videogamesRouter.get("/name",getVideogameByName);
+    
+    // videogamesRouter.post("/create",postVideogame)
 
 module.exports = videogamesRouter;

@@ -4,7 +4,7 @@ const axios = require("axios")
 
 
 const getAllVideogames = async () => {
-    let allVideoGamesArray = [];
+    let allVideogamesArray = [];
     let page = 1;
     
     while (allVideoGamesArray.length < 100) {
@@ -12,7 +12,7 @@ const getAllVideogames = async () => {
       const response = await axios.get(url);
       const { results, next } = response.data;
        // de todo lo que devuelve la api, me quedo solo con el array de 20 resultados y la url de los siguientes 20
-      allVideoGamesArray = allVideoGamesArray.concat(results); 
+      allVideogamesArray = allVideogamesArray.concat(results); 
       
       if (!next) {
         break;
@@ -21,9 +21,9 @@ const getAllVideogames = async () => {
       
       page++;
     }
-    //retorna el array cuando llegue a 100 posiciones, incluso si falta alguna posicion en alguna pagina 
-    
-    return allVideoGamesArray;
+    const DBVideogames = await Videogame.findAll();
+    const allVideogames = DBVideogames.concat(allVideogamesArray);
+    return allVideogames;
   };
   
 module.exports = getAllVideogames;
