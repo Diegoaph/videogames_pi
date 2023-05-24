@@ -1,9 +1,9 @@
 //getAllGenresHandler
 const getAllGenres = require('../controllers/getAllGenres')
 
-const getAllGenresHandler = (req,res)=>{
+const getAllGenresHandler = async (req,res)=>{
     try {
-        const genres = getAllGenres();
+        const genres = await getAllGenres();
         res.status(200).json(genres)
         
     } catch (error) {

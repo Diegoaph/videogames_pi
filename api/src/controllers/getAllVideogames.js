@@ -1,14 +1,17 @@
 //getAllVideogames
 const {Videogame,Genre} = require("../db");
 const axios = require("axios")
+require('dotenv').config();
+const {VG_URL,GNR_URL,API_KEY} = process.env;
 
 
 const getAllVideogames = async () => {
     let allVideogamesArray = [];
-    let page = 1;
+    let pageNum = 1;
+    let page = `&page=${pageNum}`
     
-    while (allVideoGamesArray.length < 100) {
-      const url = `https://api.rawg.io/api/games?key=1c2a137230ce410497693405f5f9f015&page=${page}`;
+    while (allVideogamesArray.length < 100) {
+      const url = `${VG_URL}?key=${API_KEY}${page}`;
       const response = await axios.get(url);
       const { results, next } = response.data;
        // de todo lo que devuelve la api, me quedo solo con el array de 20 resultados y la url de los siguientes 20
@@ -19,7 +22,7 @@ const getAllVideogames = async () => {
          // en caso de que no haya mas paginas (dificil), corta el ciclo
       }
       
-      page++;
+      pageNum++;
     }
     const DBVideogames = await Videogame.findAll();
     const allVideogames = DBVideogames.concat(allVideogamesArray);
