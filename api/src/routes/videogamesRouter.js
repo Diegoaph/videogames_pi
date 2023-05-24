@@ -15,6 +15,6 @@ const videogamesRouter = Router();
     
     // videogamesRouter.get("/name",getVideogameByName);
     
-    // videogamesRouter.post("/create",postVideogame)
+    videogamesRouter.post("/create",postVideogame)
 
 module.exports = videogamesRouter;
