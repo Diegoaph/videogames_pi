@@ -1,14 +1,14 @@
-const {Videogame,Genre} = require("../db");
-const axios = require("axios")
+const { Videogame, Genre } = require("../db");
+const axios = require("axios");
+require('dotenv').config();
+const { VG_URL, API_KEY } = process.env;
 
-
-const getVideogameByName = async (req, res) => {
-    console.log(Videogame,Genre);
-
-    //GET | /videogames/name?="..."
-    // aqui debe ir la logica para obtener los primeros 15 videojuegos que se encuentren con la palabra recibida por query.
-    // Debe poder buscarlo independientemente de mayúsculas o minúsculas.
-    // Si no existe el videojuego, debe mostrar un mensaje adecuado.
-    // Debe buscar tanto los de la API como los de la base de datos.
+const getVideogameByName = async (nameSolicitado) => {
+  const url = `${VG_URL}/?search[]=${nameSolicitado}&key=${API_KEY}`;
+  const apiResponse = await axios.get(url);
+  const arrayResultApi = apiResponse.data.results;
+  console.log(arrayResultApi);
+  return arrayResultApi;
 };
+
 module.exports = getVideogameByName;

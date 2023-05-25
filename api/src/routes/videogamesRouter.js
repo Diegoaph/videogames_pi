@@ -13,7 +13,7 @@ const videogamesRouter = Router();
     videogamesRouter.get("/:idVideogame",getVideogameById);
 
     
-    // videogamesRouter.get("/name",getVideogameByName);
+    videogamesRouter.get("/:name",getVideogameByName);
     
     videogamesRouter.post("/create",postVideogame)
 

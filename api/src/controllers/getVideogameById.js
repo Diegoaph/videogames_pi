@@ -1,9 +1,12 @@
 const {Videogame,Genre} = require("../db");
 const axios = require("axios");
 const idSolicitado = require("../handlers/getVideogameByIdHandler")
+require('dotenv').config();
+const {VG_URL,GNR_URL,API_KEY} = process.env;
 
 const getVideogameById = async (idSolicitado) => {
-    const apiResponse = await axios.get(`https://api.rawg.io/api/games/${idSolicitado}?key=1c2a137230ce410497693405f5f9f015`);
+    const url = `${VG_URL}/${idSolicitado}?key=${API_KEY}`;
+    const apiResponse = await axios.get(url);
 
     const { id, name, description, platforms, background_image, released, rating_top , genres} = apiResponse.data;
 

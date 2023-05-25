@@ -24,6 +24,7 @@ const postVideogame = async ({
         genres,
         rating
     }})
+    //! deberia agregar un throw error si el juego ya esta
 };
 module.exports = postVideogame;
     // POST | /videogames
