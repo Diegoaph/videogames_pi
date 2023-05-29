@@ -5,6 +5,29 @@ require('dotenv').config();
 const {VG_URL,GNR_URL,API_KEY} = process.env;
 
 const getVideogameById = async (idSolicitado) => {
+
+    if(idSolicitado.includes('-')){
+        console.log("buscando en DB");
+        const DBResponse = await Videogame.findByPk(idSolicitado);
+        if (DBResponse) {
+            const { name, description, platforms, image, released, rating , genres} = DBResponse;
+            const videogameSolicitado= {
+                
+                name,
+                description,
+                platforms,
+                image,
+                released,
+                rating,
+                genres
+            }
+            console.log(videogameSolicitado);
+            return videogameSolicitado; 
+        }else{ return console.error("no videogames with this id where found in database");}
+        
+
+    } else {
+console.log("buscando en api");
     const url = `${VG_URL}/${idSolicitado}?key=${API_KEY}`;
     const apiResponse = await axios.get(url);
 
@@ -23,7 +46,7 @@ const getVideogameById = async (idSolicitado) => {
         rating: rating_top,
         genres: generos
     }
-    return videogameSolicitado;
+    return videogameSolicitado;}
 };
-  
+
 module.exports = getVideogameById;

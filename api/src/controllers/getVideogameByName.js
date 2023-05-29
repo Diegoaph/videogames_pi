@@ -1,7 +1,7 @@
 const axios = require("axios");
 require('dotenv').config();
 const {Op}=require("sequelize")
-const {Videogame,Genre} = require("../db");
+const {Videogame} = require("../db");
 
 const getVideogameByName = async (nameSolicitado) => {
   const { VG_URL, API_KEY } = process.env;
@@ -22,11 +22,11 @@ const getVideogameByName = async (nameSolicitado) => {
       name: { [Op.iLike]: `%${nameSolicitado}%`, }
     },
   });
-  
-
     const allVideogames = DBVideogames.concat(arrayResultApi);
-    console.log(DBVideogames+"&/&/&/&"+arrayResultApi);
-    return allVideogames;
+    if(allVideogames.length===0){
+      return console.error("No videogames with this name where found ");
+    }else{
+    return allVideogames.slice(0,15);}
 };
 
 module.exports = getVideogameByName;
