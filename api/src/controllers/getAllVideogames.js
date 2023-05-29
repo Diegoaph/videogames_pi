@@ -2,7 +2,7 @@
 const {Videogame,Genre} = require("../db");
 const axios = require("axios")
 require('dotenv').config();
-const {VG_URL,GNR_URL,API_KEY} = process.env;
+const {VG_URL,API_KEY} = process.env;
 
 
 const getAllVideogames = async () => {
