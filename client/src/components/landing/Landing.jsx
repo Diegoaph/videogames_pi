@@ -1,10 +1,17 @@
-//import Searchbar from "../searchbar/Searchbar.jsx"
+import { NavLink } from 'react-router-dom';
 import style from './landing.module.css';
  function Landing(props) {
    return (
       <main className={style.landing}>
-         <h1>Landing</h1>
-         <button>Ingresar</button>
+         <section className={style.body}>
+            <h1 className={style.h1}>Press Start to enter the greatest library of videogames!</h1>
+
+               <button className={style.innerbutton} >
+                  <NavLink className={style.start}  to='/favorites'>
+                      Start 
+                  </NavLink>
+               </button>
+         </section>
       </main>
    );
 }

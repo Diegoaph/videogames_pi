@@ -1,3 +1,7 @@
 .nav{
+    display:flex;
+    flex-direction: column;
     background-color: rgb(74, 214, 69);
+    padding-bottom:10vw;
+    padding-top: 0;
 }

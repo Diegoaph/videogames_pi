@@ -3,8 +3,9 @@ import style from './search.module.css';
  function Search(props) {
    return (
       <main className={style.search}>
-        <h5>search:</h5>
-         <input type="text" />
+         <div >
+            <input type="search" placeholder='SEARCH' className={style.input}/>
+         </div>
       </main>
    );
 }
