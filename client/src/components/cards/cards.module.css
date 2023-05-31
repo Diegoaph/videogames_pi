@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(../../assets/controllers_wallpaper.png);
+}
+.fake {
+  margin-top: 2vh;
+  background-color: darkslategray;
+  width: 25vw;
+  aspect-ratio: 1.7 / 1;
+}
+
+.cards {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.paginado {
+  background-color: rgba(0, 0, 0, 0.63);
+  font-size: xx-large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bolder;
+  color: blanchedalmond;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+  .fake {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 524px) {
+  .cards {
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+  }
+  .fake {
+    width: 90vw;
+  }
+}

@@ -28,11 +28,11 @@ const App=()=> {
        <Route
         path='/about' element={<About/>} 
       />
-{/*
+
       <Route
         path='/home' element={<Cards/>} 
       />
-
+{/*
       <Route
         path='/detail/:id' element={<Detail/>} 
       />
@@ -43,7 +43,7 @@ const App=()=> {
 
       </Routes>
 
-      {path !== '/'&& <Nav/>}
+      {/* {path !== '/'&& <Nav/>} */}
     </main>
   );
 }

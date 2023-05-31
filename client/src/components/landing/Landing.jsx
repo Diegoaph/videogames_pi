@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import style from './landing.module.css';
- function Landing(props) {
+ const Landing=(props) =>{
    return (
       <main className={style.landing}>
          <section className={style.body}>
             <h1 className={style.h1}>Press Start to enter the greatest library of videogames!</h1>
 
                <button className={style.innerbutton} >
-                  <NavLink className={style.start}  to='/favorites'>
+                  <NavLink className={style.start}  to='/home'>
                       Start 
                   </NavLink>
                </button>

@@ -1,18 +1,8 @@
 .search{
+    margin-top: 2lvh;
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: rgb(255, 127, 127);
-}
-.p{
-    margin: 0px;
-    font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: rgba(134, 134, 134, 0.342);
-    border-radius: 100%;
-    width: 5vw;
-    height: 5vw;
-    filter: drop-shadow(0 0 8px black)
 }
 
 .input{
@@ -21,7 +11,7 @@
     background-color: blanchedalmond;
     border: none;
     padding-left:2.5rem;
-    background-image: url(/home/diego/Documentos/henry/PI/videogames/videogames_pi/client/src/assets/lupa.png);
+    background-image: url(../../assets/lupa.png);
     background-position-x: 0.5rem;
     background-position-y: center;
     background-repeat: no-repeat;

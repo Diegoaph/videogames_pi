@@ -1,7 +1,32 @@
 .nav{
     display:flex;
     flex-direction: column;
-    background-color: rgb(74, 214, 69);
-    padding-bottom:10vw;
-    padding-top: 0;
+    background: linear-gradient(60deg, rgba(22, 22, 22, 0.9), rgba(22,22,22, 0.5), rgba(22, 22, 22, 0.9));
+    width: 100%;
+    padding-bottom:0.5rem;
+    align-items: center;
+}
+.multiple{
+    color: blanchedalmond;
+    background: rgba(47, 79, 79, 0.877);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 0.5rem;
+}
+.filters{
+    display: flex;
+    flex-direction: column;
+}
+
+.multiple option:checked {
+    font-weight: bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: blanchedalmond;
+    background-color: #04054db6; 
+  }
+.desplegable{
+
+    color: blanchedalmond;
+    background: rgba(47, 79, 79, 0.877);
+    border-radius: 0.5rem;
+
 }
