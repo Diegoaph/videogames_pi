@@ -4,11 +4,19 @@
   align-items: center;
   background-image: url(../../assets/controllers_wallpaper.png);
 }
-.fake {
+.card {
   margin-top: 2vh;
-  background-color: darkslategray;
-  width: 25vw;
-  aspect-ratio: 1.7 / 1;
+  max-width: 25vw;
+  height: calc(25vw / 1.7); 
+  overflow:hidden;
+  border-radius: 2rem;
+  border: groove 1rem rgba(17, 15, 15, 0.549);
+}
+
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; 
 }
 
 .cards {
@@ -35,8 +43,10 @@
   .cards {
     grid-template-columns: repeat(2, minmax(300px, 1fr));
   }
-  .fake {
-    width: 40vw;
+  .card {
+    min-width: 40vw;
+
+    height: calc(40vw / 1.7); 
   }
 }
 
@@ -44,7 +54,8 @@
   .cards {
     grid-template-columns: repeat(1, minmax(300px, 1fr));
   }
-  .fake {
-    width: 90vw;
+  .card {
+    min-width: 90vw;
+    height: calc(90vw / 1.7); 
   }
 }

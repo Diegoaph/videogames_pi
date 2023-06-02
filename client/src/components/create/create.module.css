@@ -1,3 +1,8 @@
 .create{
-    background-color: rgb(236, 255, 127);
+    min-height: 100lvh;
+    background-image: url(../../assets/controllers_wallpaper.png);
+    background-repeat: repeat;
+    display: flex;
+    flex-direction: column;
+    padding:1rem;
 }

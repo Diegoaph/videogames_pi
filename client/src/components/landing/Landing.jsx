@@ -1,6 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import style from './landing.module.css';
- const Landing=(props) =>{
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllVideogames } from '../../redux/actions';
+
+
+ const Landing=() =>{
+
+const dispatch = useDispatch();
+useEffect(()=>{
+   dispatch(getAllVideogames())
+},[])
+
+
+
    return (
       <main className={style.landing}>
          <section className={style.body}>

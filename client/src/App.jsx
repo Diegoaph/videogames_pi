@@ -5,15 +5,14 @@ import Cards from './components/cards/Cards.jsx';
 import Create from './components/create/Create.jsx';
 import Landing from './components/landing/Landing.jsx';
 import Detail from './components/detail/Detail.jsx';
-import Nav from './components/nav/Nav.jsx';
-import About from './components/about/About.jsx';
+import Error from './components/error/Error.jsx';
 
 
 const App=()=> {
   const location = useLocation();
    const navigate = useNavigate();
    const path = location.pathname
-   const [ vgs100vgs,setVgs100 ]= useState([]);
+   const [ vgs100,setVgs100 ]= useState([]);
   return (
     <main className={style.app}>
 
@@ -25,25 +24,24 @@ const App=()=> {
         path='/' element={<Landing/>} 
       />
 
-       <Route
-        path='/about' element={<About/>} 
-      />
 
       <Route
         path='/home' element={<Cards/>} 
       />
-{/*
+
+       
       <Route
         path='/detail/:id' element={<Detail/>} 
       />
-*/}
+
       <Route
         path='/create' element={<Create/>} 
       /> 
 
       </Routes>
 
-      {/* {path !== '/'&& <Nav/>} */}
+      
+      {path !== '/' && path !== '/home' && path !== '/create' && !path.startsWith('/detail')  && <Error />}
     </main>
   );
 }

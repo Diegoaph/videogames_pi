@@ -8,9 +8,10 @@ const {VG_URL,API_KEY} = process.env;
 const getAllVideogames = async () => {
     let allVideogamesArray = [];
     let pageNum = 1;
-    let page = `&page=${pageNum}`
     
     while (allVideogamesArray.length < 100) {
+      
+      let page = `&page=${pageNum}`
       const url = `${VG_URL}?key=${API_KEY}${page}`;
       const response = await axios.get(url);
       const { results, next } = response.data;

@@ -1,12 +1,22 @@
 import style from './nav.module.css';
 import Search from "../search/Search.jsx"
+import { NavLink } from 'react-router-dom';
 
- function Nav(props) {
+ function Nav() {
    return (
       <main className={style.nav}>
-         <section>
+         <section className={style.searchcreate}>
+
             <Search/>
+
+            <button className={style.button}>
+               <NavLink className={style.creeate} to='/create'>
+                  Create
+               </NavLink>
+            </button>
+
          </section>
+         
          <section className={style.filters}>
 
             <select  className={style.desplegable} defaultValue="OrderBy" > 
