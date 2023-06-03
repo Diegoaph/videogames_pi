@@ -1,47 +1,60 @@
-import Nav from '../nav/Nav'
-import Card from '../card/Card'
+import Nav from '../nav/Nav';
+import Card from '../card/Card';
 import style from './cards.module.css';
-import { useSelector } from 'react-redux';
-
-
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getAllVideogames } from '../../redux/actions';
-
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { getAllVideogames, updateRenderArray } from '../../redux/actions';
 
 const Cards = () => {
   const dispatch = useDispatch();
-  useEffect(()=>{
-     dispatch(getAllVideogames())
-  },[])
+  const allVideogamesArray = useSelector(state => state.allVideogamesArray);
+  const toRenderArray = useSelector(state => state.toRenderArray);
+  const [searchArray, setSearchArray] = useState([]);
+
+  useEffect(() => {
+    dispatch(getAllVideogames());
+  }, []);
+
+  const onSearch = async (name) => {
+    try {
+      const response = await axios(`http://localhost:3001/videogames/search/?name=${name}`);
+      const data = response.data;
+      console.log(data)
   
+      if (!data.length) {
+        window.alert('Try another name!');
+      } else {
+        setSearchArray(data);
+        dispatch(updateRenderArray(data));
+      }
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
+  };
 
- const allVideogamesArray = useSelector(state=>state.allVideogamesArray)
- return (
+  return (
     <main className={style.main}>
-      <Nav />
-      
-      <section className={style.cards}>
-        {allVideogamesArray.map(({ id, name, genres, background_image }) => (
+      <Nav onSearch={onSearch} />
 
-          <div className={style.card}>
-          <Card
-              key={id}
+      <section className={style.cards}>
+      {(toRenderArray.length ? toRenderArray : allVideogamesArray).map(({ id, name, genres, background_image,image }) => (
+          <div className={style.card} key={id}>
+            <Card
               id={id}
               name={name}
               genres={genres}
-              image={background_image}
+              image={background_image || image}
             />
           </div>
         ))}
       </section>
-      
+
       <section className={style.paginado}>
         <p> ⇤ ← 1 2 3 4 5 → ⇥</p>
       </section>
     </main>
   );
-}
+};
 
 export default Cards;

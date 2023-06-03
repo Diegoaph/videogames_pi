@@ -9,6 +9,7 @@ const getVideogameByName = async (nameSolicitado) => {
 
   const response = await axios.get(url);
   const arrayResultApi = response.data.results.map(vg => ({
+    id:vg.id,
     name: vg.name,
     released: vg.released,
     image: vg.background_image,

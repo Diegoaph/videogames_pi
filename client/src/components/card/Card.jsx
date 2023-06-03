@@ -2,7 +2,8 @@ import { NavLink } from 'react-router-dom';
 import style from './card.module.css';
 
 const Card = ({ id, name, genres, image }) => {
-  const gensNames = genres.map(gen => gen.name).join(", ");
+  const gensNames = genres ? genres.map(gen => gen.name).join(", ") : ""; // Verificar si genres es undefined
+
   return (
     <div className={style.card}>
       <NavLink className={style.image} to={`/detail/${id}`}>

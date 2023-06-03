@@ -84,7 +84,8 @@
     color: rgb(255, 255, 255);
     z-index: 1;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: rgba(0, 0, 0, 0.45);
+    background: linear-gradient(80deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    border-radius: 1rem;
   }
   .description{
     padding: 2rem;

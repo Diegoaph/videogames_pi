@@ -2,12 +2,12 @@ import style from './nav.module.css';
 import Search from "../search/Search.jsx"
 import { NavLink } from 'react-router-dom';
 
- function Nav() {
+ function Nav(props) {
    return (
       <main className={style.nav}>
          <section className={style.searchcreate}>
 
-            <Search/>
+            <Search onSearch={props.onSearch}/>
 
             <button className={style.button}>
                <NavLink className={style.creeate} to='/create'>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import{ GET_VIDEOGAMES } from "./action-types"
+import { GET_VIDEOGAMES, POST_VIDEOGAME, UPDATE_RENDER_ARRAY } from "./action-types";
 
 const URL = 'http://localhost:3001'
 
@@ -15,3 +15,10 @@ export const getAllVideogames =()=>{
         }
     )
 }}
+
+export const updateRenderArray = (newArray) => {
+    return {
+      type: UPDATE_RENDER_ARRAY,
+      payload: newArray
+    };
+  };
