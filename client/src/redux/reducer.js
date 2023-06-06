@@ -3,7 +3,7 @@ import { GET_VIDEOGAMES, POST_VIDEOGAME, UPDATE_RENDER_ARRAY } from "./action-ty
 
 const initialState={
     allVideogamesArray:[],
-    toRenderArray:[]
+    //toRenderArray:[]
 };
 
 const reducer = (
@@ -12,11 +12,11 @@ const reducer = (
 
     switch(type){
 
-    case UPDATE_RENDER_ARRAY:
-            return {
-                ...state,
-                toRenderArray: payload
-            };
+    // case UPDATE_RENDER_ARRAY:
+    //         return {
+    //             ...state,
+    //             toRenderArray: payload
+    //         };
   
     case GET_VIDEOGAMES:
             return{

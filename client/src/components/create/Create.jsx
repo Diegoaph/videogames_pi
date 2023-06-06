@@ -1,67 +1,86 @@
 import style from './create.module.css'
+import axios from 'axios'
 import { useState } from "react";
 import { NavLink } from 'react-router-dom';
 //import validation from '../validation/Validation.js';
+const Create = ({}) => {
+// const [errors,setErrors]=useState({});
+const [vgData,setVgData]=useState(
+  {
+    name:"",
+    description:"",
+    platforms:[],
+    image:"",
+    release:"",
+    genres:[],
+    rating:""
+  }
+);
+{/***********************************************/}
+const handleChange=(event)=>{
+    setVgData({...vgData,[event.target.name]:event.target.value});
 
-const Create = ({/*{login}*/}) => {
+  //   const validateErrors = validation({
+  //     ...vgData,[event.target.name]:event.target.value
+  // })
+  }
+
+{/***********************************************/}
+  const handleDateChange=(event)=>{
+    const date = event.target.value.slice(0, 10);
+    setVgData({...vgData,[event.target.name]:date})}
+{/***********************************************/}
+  const handleMultipleChange=(event)=>{
+    const selectedOptions= event.target.selectedOptions;
+    const valuesArray = Array.from(selectedOptions).map((option)=>option.value);
+    setVgData({...vgData,[event.target.name]:valuesArray});
+    console.log(event.target.name);
+  }
+{/***********************************************/}
+  const handleOnSubmit =(event)=>{
+    send(vgData);
+    event.preventDefault()
+  }
     
-    // const [errors,setErrors]=useState({})
-    // const [userData, setUserData]=useState({
-    //     email:'',password:''
-    // })
+  const send= async (data)=>{
+    const URL = 'http://localhost:3001/videogames/create';
+    await axios.post(URL,data)
+    .then(response => {
+      console.log(response.data);
+    }).catch(error=>{
+      console.error('Error',error);
+    });
+  }
 
-    
-
-    // const handleChange = (event)=>{
-    //     setUserData({
-    //         ...userData,[event.target.name]:event.target.value
-    // })
-
-    // const validateErrors = validation({
-    //     ...userData,[event.target.name]:event.target.value
-    // })
-
-    //     setErrors(validateErrors)
-
-      
-    // }
-
-    
-
-    // const handleOnSubmit =(event)=>{
-    //     event.preventDefault()
-    //     login(userData)
-    // }
-
-    return(
+  return(
         
-    <form className={style.create}>
+    <form onSubmit={handleOnSubmit}  className={style.create}>
 
-        <header className={style.header}>
-            <button className={style.button}>
-                <NavLink className={style.home} to='/home'>
-                    ←
-                </NavLink>
-            </button>
+      <header className={style.header}>
+          <button className={style.button}>
+              <NavLink className={style.home} to='/home'>
+                  ←
+              </NavLink>
+          </button>
 
-            <h1 className={style.h1}>Create new Videogame file</h1>
-        </header>
+          <h1 className={style.h1}>Create a new file</h1>
+      </header>
 
-        <main>
+        <main className={style.main}>
             <label className={style.label} htmlFor="name">
-                Name:
+                * Name:
             </label> 
-            <input className={style.input} type="text" name="name" placeholder="Videogame Name"/><hr />
+            <input  onChange={handleChange} className={style.input} type="text" name="name" placeholder="Videogame Name"/><hr />
 
             <label className={style.label} htmlFor="description">
                 Description:
             </label> 
-            <textarea className={style.input} type="textarea" name="description" placeholder="Videogame Description"/><hr />
+            <textarea  onChange={handleChange} className={style.input} type="textarea" name="description" placeholder="Videogame Description"/><hr />
 
             <label className={style.label} htmlFor="platforms">
                 Platforms:
             </label> 
-            <select  className={style.multiple} multiple defaultValue="filterBy" > 
+            <select onChange={handleMultipleChange} className={style.multiple} multiple defaultValue={["filterBy"]} name="platforms"> 
                <option disabled value="filterBy">
                   Select platforms
                </option>
@@ -120,17 +139,17 @@ const Create = ({/*{login}*/}) => {
             <label className={style.label} htmlFor="image">
                 Image:
             </label> 
-            <input className={style.input} type="text" name="image" placeholder=".jpg .png .svg"/><hr />
+            <input  onChange={handleChange} className={style.input} type="text" name="image" placeholder=".jpg .png .svg"/><hr />
 
             <label className={style.label} htmlFor="release">
                 Release Date:
             </label> 
-            <input className={style.input} type="date" name="release" placeholder="YYY/MM/DD"/><hr />
+            <input onChange={handleDateChange} className={style.input} type="date" name="released" placeholder="YYY/MM/DD"/><hr />
 
             <label className={style.label} htmlFor="genres">
                 Genres:
             </label> 
-            <select  className={style.multiple} multiple defaultValue="filterBy" > 
+            <select onChange={handleMultipleChange} className={style.multiple} multiple name="genres" defaultValue={["filterBy"]} > 
                <option disabled value="filterBy">
                   Select Genres
                </option>
@@ -158,8 +177,10 @@ const Create = ({/*{login}*/}) => {
             <label className={style.label} htmlFor="rating">
                 Rating:
             </label> 
-            <input className={style.input} type="number" name="rating" placeholder="rate 1 to 10"/><hr />
-            <button>Create</button>
+            <input type="range" min="1" max="5" step="1" onChange={handleChange} className={style.range} name="rating" placeholder="0"/><hr />
+            
+            <button className={style.createButton}>CREATE
+            </button>
             
             
             
@@ -170,7 +191,7 @@ const Create = ({/*{login}*/}) => {
     </form>
     
 
-    )
+  )
 
 }
 export default Create;

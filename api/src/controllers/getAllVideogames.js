@@ -6,7 +6,8 @@ const {VG_URL,API_KEY} = process.env;
 
 
 const getAllVideogames = async () => {
-    let allVideogamesArray = [];
+    try {
+      let allVideogamesArray = [];
     let pageNum = 1;
     
     while (allVideogamesArray.length < 100) {
@@ -28,6 +29,10 @@ const getAllVideogames = async () => {
     const DBVideogames = await Videogame.findAll();
     const allVideogames = DBVideogames.concat(allVideogamesArray);
     return allVideogames;
+      
+    } catch (error) {
+      console.error({error:error.message})
+    }
   };
   
 module.exports = getAllVideogames;

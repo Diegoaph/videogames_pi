@@ -1,8 +1,12 @@
 import style from './nav.module.css';
 import Search from "../search/Search.jsx"
 import { NavLink } from 'react-router-dom';
+import {handleGenresChange,handleSelectedSortOptionChange,handleDataSourceChange} from '../cards/Cards'
 
  function Nav(props) {
+
+    
+
    return (
       <main className={style.nav}>
          <section className={style.searchcreate}>
@@ -10,37 +14,24 @@ import { NavLink } from 'react-router-dom';
             <Search onSearch={props.onSearch}/>
 
             <button className={style.button}>
-               <NavLink className={style.creeate} to='/create'>
+               <NavLink className={style.create} to='/create'>
                   Create
                </NavLink>
             </button>
 
          </section>
+
+{/************************************************************/}
          
          <section className={style.filters}>
 
-            <select  className={style.desplegable} defaultValue="OrderBy" > 
-               <option disabled value="OrderBy">
-                  Order
-               </option>
-            <option value="RatingD">Mayor Rating</option>
-            <option value="RatingA">Menor Rating</option>
-            <option value="AlfaD">A-Z</option>
-            <option value="AlfaA">Z-A</option>
-            </select>
-
-
-            <select  className={style.desplegable} defaultValue="filterBy" > 
-               <option disabled value="filterBy">
-                  Origin
-               </option>
-            <option value="API">From API</option>
-            <option value="DB">From DataBase</option>
-            </select>
-
-            <select  className={style.multiple} multiple defaultValue="filterBy" > 
-               <option disabled value="filterBy">
-                  Genre
+         <select
+               className={style.desplegable}
+               defaultValue="all"
+               onChange={props.handleGenresChange}
+            > 
+            <option value="all">
+                  Genres
                </option>
             <option value="Indie">Indie</option>
             <option value="Action">Action</option>
@@ -62,10 +53,37 @@ import { NavLink } from 'react-router-dom';
             <option value="Educational">Educational</option>
             <option value="Card">Card</option>
             </select>
+
+{/************************************************************/}
+            <select  
+            className={style.desplegable} 
+            onChange={props.handleSelectedSortOptionChange}
+            defaultValue="default" > 
+               <option value="default">
+                  Sort
+               </option>
+            <option value="RatingD">Mayor Rating</option>
+            <option value="RatingA">Menor Rating</option>
+            <option value="AlfaD">A-Z</option>
+            <option value="AlfaA">Z-A</option>
+            </select>
+
+{/************************************************************/}
+
+            <select  
+               onChange={props.handleDataSourceChange} 
+               className={style.desplegable} 
+               defaultValue="all" > 
+            <option value="all">All sources</option>
+            <option value="API">From API</option>
+            <option value="DB">From DataBase</option>
+            </select>
+
+
+            
          </section>
          
       </main>
    );
 }
-
 export default Nav;

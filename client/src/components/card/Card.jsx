@@ -2,7 +2,15 @@ import { NavLink } from 'react-router-dom';
 import style from './card.module.css';
 
 const Card = ({ id, name, genres, image }) => {
-  const gensNames = genres ? genres.map(gen => gen.name).join(", ") : ""; // Verificar si genres es undefined
+  let gensNames = ""
+  if(genres){ 
+    if(!toString(id).includes('-'))
+    {gensNames=genres.map(gen => gen.name).join(", ")
+    }
+
+    if(toString(id).includes('-')){
+    gensNames=genres.join(", ")}
+  };  
 
   return (
     <div className={style.card}>
@@ -10,15 +18,19 @@ const Card = ({ id, name, genres, image }) => {
         <img src={image} alt='Img' />
       </NavLink>
   
-      <h2 className={style.nameContainer}>
+      <section className={style.nameContainer}>
+
         <NavLink className={style.name} to={`/detail/${id}`}>
           {name}
         </NavLink>
-      </h2>
-  
-      <h3 className={style.genres}>
+
+        <h3 className={style.genres}>
         {gensNames}
-      </h3>
+        </h3>
+
+      </section>
+  
+      
     </div>
   );
 }

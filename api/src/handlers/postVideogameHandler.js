@@ -8,7 +8,8 @@ const postVideogameHandler = async (req,res)=>{
         res.status(200).json(videogameCreado)
         
     } catch (error) {
-        res.status(400).json({error:error.message})
+        console.log(req.body);
+        res.status(410).json({error:error.message})
     }
 }
 

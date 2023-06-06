@@ -33,9 +33,6 @@ module.exports = (sequelize) => {
 
       genres: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        validate: {
-          isIn: [['Indie', 'Action', 'Adventure', 'Strategy', 'RPG', 'Shooter', 'Casual', 'Simulation', 'Puzzle', 'Arcade', 'Platformer', 'Massively Multiplayer', 'Racing', 'Sports', 'Fighting', 'Family', 'Board Games', 'Educational', 'Card']],
-        },
       },
      
       

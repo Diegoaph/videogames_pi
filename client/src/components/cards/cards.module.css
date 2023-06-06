@@ -6,6 +6,7 @@
 }
 .card {
   margin-top: 2vh;
+  width: 25vw;
   max-width: 25vw;
   height: calc(25vw / 1.7); 
   overflow:hidden;

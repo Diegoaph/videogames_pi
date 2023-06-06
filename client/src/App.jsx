@@ -1,6 +1,5 @@
 import style from './App.module.css';
-import { useState,useEffect  } from 'react';
-import { Routes,Route,useLocation,useNavigate} from 'react-router-dom';
+import { Routes,Route,useLocation} from 'react-router-dom';
 import Cards from './components/cards/Cards.jsx';
 import Create from './components/create/Create.jsx';
 import Landing from './components/landing/Landing.jsx';
@@ -10,9 +9,7 @@ import Error from './components/error/Error.jsx';
 
 const App=()=> {
   const location = useLocation();
-   const navigate = useNavigate();
    const path = location.pathname
-   const [ vgs100,setVgs100 ]= useState([]);
   return (
     <main className={style.app}>
 
