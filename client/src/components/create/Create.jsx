@@ -2,9 +2,9 @@ import style from './create.module.css'
 import axios from 'axios'
 import { useState } from "react";
 import { NavLink } from 'react-router-dom';
-//import validation from '../validation/Validation.js';
+import validation from '../../Validation.js';
 const Create = ({}) => {
-// const [errors,setErrors]=useState({});
+const [errors,setErrors]=useState({});
 const [vgData,setVgData]=useState(
   {
     name:"",
@@ -20,9 +20,10 @@ const [vgData,setVgData]=useState(
 const handleChange=(event)=>{
     setVgData({...vgData,[event.target.name]:event.target.value});
 
-  //   const validateErrors = validation({
-  //     ...vgData,[event.target.name]:event.target.value
-  // })
+     const validateErrors = validation({
+       ...vgData,[event.target.name]:event.target.value
+   })
+   setErrors(validateErrors)
   }
 
 {/***********************************************/}
@@ -70,7 +71,7 @@ const handleChange=(event)=>{
             <label className={style.label} htmlFor="name">
                 * Name:
             </label> 
-            <input  onChange={handleChange} className={style.input} type="text" name="name" placeholder="Videogame Name"/><hr />
+            <input  onChange={handleChange} className={style.input} type="text" name="name" placeholder="Videogame Name"/>{errors.name && <p className={style.errorMessage}>{errors.name}</p>}<hr />
 
             <label className={style.label} htmlFor="description">
                 Description:
@@ -139,7 +140,7 @@ const handleChange=(event)=>{
             <label className={style.label} htmlFor="image">
                 Image:
             </label> 
-            <input  onChange={handleChange} className={style.input} type="text" name="image" placeholder=".jpg .png .svg"/><hr />
+            <input  onChange={handleChange} className={style.input} type="text" name="image" placeholder=".jpg .png .svg"/>{errors.image && <p className={style.errorMessage}>{errors.image}</p>}<hr />
 
             <label className={style.label} htmlFor="release">
                 Release Date:
@@ -179,7 +180,7 @@ const handleChange=(event)=>{
             </label> 
             <input type="range" min="1" max="5" step="1" onChange={handleChange} className={style.range} name="rating" placeholder="0"/><hr />
             
-            <button className={style.createButton}>CREATE
+            <button  style={{ display: (!vgData.name || !vgData.image || errors.name || errors.image || !vgData.genres.length) ? "none" : "inline" }} className={style.createButton} disabled={!vgData.name||!vgData.image||errors.name||errors.image||!vgData.genres.length}>CREATE
             </button>
             
             
