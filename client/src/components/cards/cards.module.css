@@ -31,13 +31,18 @@
 
 .paginado {
   background-color: rgba(0, 0, 0, 0.63);
-  font-size: xx-large;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: bolder;
-  color: blanchedalmond;
   margin-top: 20px;
   width: 100%;
   text-align: center;
+}
+.btn{
+  font-weight: bolder;
+  font-size: larger;
+  margin:1rem;
+  border-radius: 100%;
+  color: blanchedalmond;
+  background-color: rgba(0, 0, 0, 0.699);
+  border-color: rgb(30, 189, 210);
 }
 
 @media (max-width: 1024px) {

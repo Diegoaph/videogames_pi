@@ -21,9 +21,7 @@ const Cards = () => {
   const allVideogamesArray = useSelector(state => state.allVideogamesArray);
   const [pages, setPages] = useState(Math.ceil(allVideogamesArray.length / 15));
 
-  useEffect(() => {
-    setPages(Math.ceil(allVideogamesArray.length / 15));
-  }, [allVideogamesArray]);
+  
 
 {/***********************************************/}
 const onSearch = async (name) => {
@@ -35,7 +33,6 @@ const onSearch = async (name) => {
       if (!data.length) {
         window.alert('Try another name!');
       } else {
-        console.log("despachando update render array");
         dispatch(updateRenderArray(data));
       }
     } catch (error) {
@@ -70,11 +67,55 @@ const handleLast=()=>{
 {/***********************************************/}
 
 
-console.log(
-  "se renderiza "+allVideogamesArray+" "
-);
 {/***********************************************/}
-let finalRender = allVideogamesArray.slice(((page*15)-15),(page*15))
+let midRender = allVideogamesArray
+
+
+if (selectedGenre!=="all"&&selectedGenre!==""){midRender=midRender.filter((game) => {
+  return game.genres.some((genre) => genre.name === selectedGenre);
+});}
+
+console.log(selectedGenre);
+switch (selectedSort) {
+  case "RatingD":
+    midRender=midRender.sort((a, b) => b.rating - a.rating); 
+    break;
+  case "RatingA":
+    midRender=midRender.sort((a, b) => a.rating - b.rating);
+    break;
+  case "AlfaA":
+    midRender=midRender.sort((a, b) => b.name.localeCompare(a.name)); 
+    break;
+  case "AlfaD":
+    midRender=midRender.sort((a, b) => a.name.localeCompare(b.name)); 
+    break;
+  case "default":
+    midRender = allVideogamesArray
+    break;
+  default:
+    break;
+}
+
+switch (selectedSource) {
+  case "DB":
+    midRender=midRender.filter(game=>typeof(game.id)=="string");
+    break;
+  case "API":
+    midRender=midRender.filter(game=>typeof(game.id)=="number");
+    break;
+  case "all":
+    midRender = allVideogamesArray
+    break;
+  default:
+    break;
+}
+
+
+let finalRender = midRender.slice(((page*15)-15),(page*15));
+
+useEffect(() => {
+  setPages(Math.ceil(allVideogamesArray.length / 15));
+}, [finalRender]);
   return (
     <main className={style.main}>
       <Nav handleGenresChange={handleGenresChange} handleSelectedSortOptionChange={handleSelectedSortOptionChange} handleDataSourceChange={handleDataSourceChange} onSearch={onSearch} />
@@ -96,10 +137,10 @@ let finalRender = allVideogamesArray.slice(((page*15)-15),(page*15))
       </section>
 
       <section className={style.paginado}>
-        {page!=1&&<button onClick={handleFirst}>⇤</button>}
-        {page != 1 && page != 2 && <button onClick={handlePrev}>←</button>}
-        {page != pages && page != (pages-1) && <button onClick={handleNext}>→</button>}
-        {page!=pages&&<button onClick={handleLast}>⇥</button>}
+        {page!=1&&<button className={style.btn} onClick={handleFirst}>⇤</button>}
+        {page != 1 && page != 2 && <button  className={style.btn} onClick={handlePrev}>←</button>}
+        {page != pages && page != (pages-1) && <button  className={style.btn} onClick={handleNext}>→</button>}
+        {page!=pages&&<button  className={style.btn} onClick={handleLast}>⇥</button>}
       </section>
     </main>
   );
