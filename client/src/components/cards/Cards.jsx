@@ -10,16 +10,20 @@ import { getAllVideogames, updateRenderArray } from '../../redux/actions';
 const Cards = () => {
   
   const dispatch = useDispatch();
-  
+  const [page, setPage] = useState(1);
   const [selectedGenre, setSelectedGenre] = useState('');
   const [selectedSource, setSelectedSource] = useState('');
   const [selectedSort, setSelectedSort] = useState('');
   //const toRenderArray = useSelector(state => state.toRenderArray);
   useEffect(() => {
-    dispatch(getAllVideogames())
+    dispatch(getAllVideogames());
   }, []);
   const allVideogamesArray = useSelector(state => state.allVideogamesArray);
+  const [pages, setPages] = useState(Math.ceil(allVideogamesArray.length / 15));
 
+  useEffect(() => {
+    setPages(Math.ceil(allVideogamesArray.length / 15));
+  }, [allVideogamesArray]);
 
 {/***********************************************/}
 const onSearch = async (name) => {
@@ -51,19 +55,34 @@ const onSearch = async (name) => {
     setSelectedSource(event.target.value);
   }
 {/***********************************************/}
-
+const handleLast=()=>{
+  setPage(pages);
+}
+{/***********************************************/}  const handleNext=()=>{
+  setPage(page+1);
+  }
+{/***********************************************/}  const handlePrev=()=>{
+  setPage(page-1);
+  }
+{/***********************************************/}  const handleFirst=()=>{
+  setPage(1);;
+  }
+{/***********************************************/}
 
 
 console.log(
   "se renderiza "+allVideogamesArray+" "
 );
 {/***********************************************/}
+let finalRender = allVideogamesArray.slice(((page*15)-15),(page*15))
   return (
     <main className={style.main}>
       <Nav handleGenresChange={handleGenresChange} handleSelectedSortOptionChange={handleSelectedSortOptionChange} handleDataSourceChange={handleDataSourceChange} onSearch={onSearch} />
 
+
+
       <section className={style.cards}>
-      {allVideogamesArray.map(
+      {finalRender.map(
         ({ id, name, genres, background_image,image }) => (
           <div className={style.card} key={id}>
             <Card
@@ -77,7 +96,10 @@ console.log(
       </section>
 
       <section className={style.paginado}>
-        <p> ⇤ ← 1 2 3 4 5 → ⇥</p>
+        {page!=1&&<button onClick={handleFirst}>⇤</button>}
+        {page != 1 && page != 2 && <button onClick={handlePrev}>←</button>}
+        {page != pages && page != (pages-1) && <button onClick={handleNext}>→</button>}
+        {page!=pages&&<button onClick={handleLast}>⇥</button>}
       </section>
     </main>
   );
