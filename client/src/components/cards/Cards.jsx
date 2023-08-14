@@ -121,7 +121,7 @@ const Cards = () => {
             />
 
             <section className={style.cards}>
-                {finalRender.map(
+                {finalRender?.map(
                     ({ id, name, genres, background_image, image }) => (
                         <div
                             className={style.card}
