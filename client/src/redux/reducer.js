@@ -1,34 +1,32 @@
-import { GET_VIDEOGAMES, POST_VIDEOGAME, UPDATE_RENDER_ARRAY } from "./action-types";
+import {
+    GET_VIDEOGAMES,
+    POST_VIDEOGAME,
+    UPDATE_RENDER_ARRAY,
+} from "./action-types";
 
-
-const initialState={
-    allVideogamesArray:[],
+const initialState = {
+    allVideogamesArray: [],
     //toRenderArray:[]
 };
 
-const reducer = (
-    state = initialState,
-    { type, payload })=>{
-
-    switch(type){
-
-    // case UPDATE_RENDER_ARRAY:
-    //         return {
-    //             ...state,
-    //             toRenderArray: payload
-    //         };
-  
-    case GET_VIDEOGAMES:
-            return{
+const reducer = (state = initialState, { type, payload }) => {
+    switch (type) {
+        case UPDATE_RENDER_ARRAY:
+            return {
                 ...state,
-                allVideogamesArray:payload,
-                toRenderArray:payload
-            }
+                allVideogamesArray: payload,
+            };
 
+        case GET_VIDEOGAMES:
+            return {
+                ...state,
+                allVideogamesArray: payload,
+                toRenderArray: payload,
+            };
 
-       default:return{...state}
-        
+        default:
+            return { ...state };
     }
 };
 
-export default reducer
+export default reducer;
