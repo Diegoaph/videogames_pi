@@ -43,7 +43,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Videogame, Genre } = sequelize.models;
 
 sequelize
-    .sync({ force: false }) // Set `force` to `true` to recreate tables on every application restart
+    .sync({ force: true }) // Set `force` to `true` to recreate tables on every application restart
     .then(() => {
         console.log("Database synced");
     })
