@@ -1,11 +1,7 @@
-import style from "./nav.module.css";
-import Search from "../search/Search.jsx";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import {
-    handleGenresChange,
-    handleSelectedSortOptionChange,
-    handleDataSourceChange,
-} from "../cards/Cards";
+import style from "./nav.module.css";
+import Search from "../search/Search";
 
 function Nav(props) {
     return (
