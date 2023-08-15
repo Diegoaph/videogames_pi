@@ -1,8 +1,7 @@
-const {Videogame,Genre} = require("../db");
-const axios = require("axios")
-const { Op } = require('sequelize');
-
-
+//postVideogame.js
+const { Videogame, Genre } = require("../db");
+const axios = require("axios");
+const { Op } = require("sequelize");
 
 const postVideogame = async ({
     name,
@@ -11,19 +10,20 @@ const postVideogame = async ({
     image,
     released,
     genres,
-    rating
+    rating,
 }) => {
     return await Videogame.findOrCreate({
-    where: {name:{[Op.iLike]: `%${name}%`}},
-    defaults: {
-        name,
-        description,
-        platforms,
-        image,
-        released,
-        genres,
-        rating
-    }})
+        where: { name: { [Op.iLike]: `%${name}%` } },
+        defaults: {
+            name,
+            description,
+            platforms,
+            image,
+            released,
+            genres,
+            rating,
+        },
+    });
     //! deberia agregar un throw error si el juego ya esta
 };
 module.exports = postVideogame;
