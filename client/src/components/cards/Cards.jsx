@@ -1,10 +1,10 @@
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { getAllVideogames, updateRenderArray } from "../../redux/actions";
 import Nav from "../nav/Nav";
 import Card from "../card/Card";
 import style from "./cards.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { getAllVideogames, updateRenderArray } from "../../redux/actions";
 
 const Cards = () => {
     const dispatch = useDispatch();
@@ -12,27 +12,31 @@ const Cards = () => {
     const [selectedGenre, setSelectedGenre] = useState("");
     const [selectedSource, setSelectedSource] = useState("");
     const [selectedSort, setSelectedSort] = useState("");
-    //const toRenderArray = useSelector(state => state.toRenderArray);
+    const allVideogamesArray = useSelector((state) => state.allVideogamesArray);
+    const itemsPerPage = 15;
+    const totalPages = Math.ceil(allVideogamesArray.length / itemsPerPage);
+
     useEffect(() => {
         dispatch(getAllVideogames());
     }, [dispatch]);
-    const allVideogamesArray = useSelector((state) => state.allVideogamesArray);
-    const [pages, setPages] = useState(
-        Math.ceil(allVideogamesArray.length / 15)
-    );
 
     const onSearch = async (name) => {
         try {
-            const response = await axios(`/videogames/search/?name=${name}`);
+            const response = await axios.get(
+                `/videogames/search/?name=${name}`
+            );
             const data = response.data;
 
             if (!data.length) {
-                window.alert("Try another name!");
+                window.alert("¡Prueba otro nombre!");
             } else {
                 dispatch(updateRenderArray(data));
             }
         } catch (error) {
-            console.error("Error fetching search results:", error);
+            console.error(
+                "Error al obtener los resultados de búsqueda:",
+                error
+            );
         }
     };
 
@@ -49,44 +53,52 @@ const Cards = () => {
     };
 
     const handleLast = () => {
-        setPage(pages);
+        setPage(totalPages);
     };
 
     const handleNext = () => {
-        setPage(page + 1);
+        setPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
 
     const handlePrev = () => {
-        setPage(page - 1);
+        setPage((prevPage) => Math.max(prevPage - 1, 1));
     };
 
     const handleFirst = () => {
         setPage(1);
     };
-    let midRender = allVideogamesArray;
+
+    let filteredGames = allVideogamesArray.slice();
 
     if (selectedGenre !== "all" && selectedGenre !== "") {
-        console.log(midRender);
-        midRender = midRender.filter((game) => {
-            return game?.genres?.some((genre) => genre.name === selectedGenre);
-        });
+        filteredGames = filteredGames.filter((game) =>
+            game.genres.some((genre) => genre.name === selectedGenre)
+        );
     }
 
     switch (selectedSort) {
         case "RatingD":
-            midRender = midRender.sort((a, b) => b.rating - a.rating);
+            filteredGames = filteredGames
+                .slice()
+                .sort((a, b) => b.rating - a.rating);
             break;
         case "RatingA":
-            midRender = midRender.sort((a, b) => a.rating - b.rating);
+            filteredGames = filteredGames
+                .slice()
+                .sort((a, b) => a.rating - b.rating);
             break;
         case "AlfaA":
-            midRender = midRender.sort((a, b) => b.name.localeCompare(a.name));
+            filteredGames = filteredGames
+                .slice()
+                .sort((a, b) => b.name.localeCompare(a.name));
             break;
         case "AlfaD":
-            midRender = midRender.sort((a, b) => a.name.localeCompare(b.name));
+            filteredGames = filteredGames
+                .slice()
+                .sort((a, b) => a.name.localeCompare(b.name));
             break;
         case "default":
-            midRender = allVideogamesArray;
+            filteredGames = allVideogamesArray.slice();
             break;
         default:
             break;
@@ -94,23 +106,31 @@ const Cards = () => {
 
     switch (selectedSource) {
         case "DB":
-            midRender = midRender.filter((game) => typeof game.id == "string");
+            filteredGames = filteredGames.filter(
+                (game) => typeof game.id === "string"
+            );
             break;
         case "API":
-            midRender = midRender.filter((game) => typeof game.id == "number");
+            filteredGames = filteredGames.filter(
+                (game) => typeof game.id === "number"
+            );
             break;
         case "all":
-            midRender = allVideogamesArray;
+            filteredGames = allVideogamesArray.slice();
             break;
         default:
             break;
     }
 
-    let finalRender = midRender.slice(page * 15 - 15, page * 15);
+    const finalRender = filteredGames.slice(
+        (page - 1) * itemsPerPage,
+        page * itemsPerPage
+    );
 
     useEffect(() => {
-        setPages(Math.ceil(allVideogamesArray.length / 15));
-    }, [finalRender, allVideogamesArray.length]);
+        setPage(1); // Reset page to 1 when changing filters/sorting
+    }, [selectedGenre, selectedSort, selectedSource]);
+
     return (
         <main className={style.main}>
             <Nav
@@ -121,7 +141,7 @@ const Cards = () => {
             />
 
             <section className={style.cards}>
-                {finalRender?.map(
+                {finalRender.map(
                     ({ id, name, genres, background_image, image }) => (
                         <div
                             className={style.card}
@@ -138,36 +158,33 @@ const Cards = () => {
             </section>
 
             <section className={style.paginado}>
-                {page !== 1 && (
-                    <button
-                        className={style.btn}
-                        onClick={handleFirst}>
-                        ⇤
-                    </button>
-                )}
-                {page !== 1 && page !== 2 && (
-                    <button
-                        className={style.btn}
-                        onClick={handlePrev}>
-                        ←
-                    </button>
-                )}
-                {page !== pages && page !== pages - 1 && (
-                    <button
-                        className={style.btn}
-                        onClick={handleNext}>
-                        →
-                    </button>
-                )}
-                {page !== pages && (
-                    <button
-                        className={style.btn}
-                        onClick={handleLast}>
-                        ⇥
-                    </button>
-                )}
+                <button
+                    className={style.btn}
+                    onClick={handleFirst}
+                    disabled={page === 1}>
+                    ⇤
+                </button>
+                <button
+                    className={style.btn}
+                    onClick={handlePrev}
+                    disabled={page === 1}>
+                    ←
+                </button>
+                <button
+                    className={style.btn}
+                    onClick={handleNext}
+                    disabled={page === totalPages}>
+                    →
+                </button>
+                <button
+                    className={style.btn}
+                    onClick={handleLast}
+                    disabled={page === totalPages}>
+                    ⇥
+                </button>
             </section>
         </main>
     );
 };
+
 export default Cards;
