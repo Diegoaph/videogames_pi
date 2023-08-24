@@ -92,6 +92,13 @@
 }
 
 @media (max-width: 400px) {
+    .searchcreate {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
     .filters {
         margin-top: 1rem;
         width: 90vw;
