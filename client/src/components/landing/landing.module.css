@@ -46,6 +46,7 @@
         rgba(22, 22, 22, 0.267),
         rgba(22, 22, 22, 0.062)
     );
+    border-radius: 10px;
 }
 
 .innerbutton {
