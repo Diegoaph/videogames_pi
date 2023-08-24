@@ -35,7 +35,6 @@
 }
 
 .h1 {
-    margin-top: 60px;
     color: rgb(198, 211, 171);
     text-decoration: none;
     text-align: center;
@@ -43,6 +42,8 @@
     width: 80%;
     font-size: x-large;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    filter: drop-shadow(0 0 10px black);
+    animation: glow 60s ease-in-out infinite;
 }
 
 .innerbutton {
