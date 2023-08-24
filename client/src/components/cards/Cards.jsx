@@ -11,7 +11,6 @@ const Cards = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllVideogames());
-        console.log("getAll cards");
     }, [dispatch]);
     const [page, setPage] = useState(1);
     const [selectedGenre, setSelectedGenre] = useState("");
@@ -126,9 +125,7 @@ const Cards = () => {
             />
 
             <section className={style.cards}>
-                {!allVideogamesArray.length ? (
-                    <div className={style.loading}>LOADING</div>
-                ) : (
+                {allVideogamesArray.length ? (
                     finalRender.map(
                         ({ id, name, genres, background_image, image }) => (
                             <div
@@ -143,6 +140,8 @@ const Cards = () => {
                             </div>
                         )
                     )
+                ) : (
+                    <div className={style.loading}>LOADING</div>
                 )}
                 ;
             </section>
