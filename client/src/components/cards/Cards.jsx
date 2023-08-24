@@ -11,6 +11,7 @@ const Cards = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllVideogames());
+        console.log("getAll cards");
     }, [dispatch]);
     const [page, setPage] = useState(1);
     const [selectedGenre, setSelectedGenre] = useState("");
