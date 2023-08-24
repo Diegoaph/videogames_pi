@@ -10,7 +10,7 @@
 .body {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: end;
     margin-bottom: 5vh;
 }
 
