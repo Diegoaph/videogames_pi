@@ -97,7 +97,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        flex-wrap: wrap;
+        flex-wrap: wrap-reverse;
     }
     .filters {
         margin-top: 1rem;
