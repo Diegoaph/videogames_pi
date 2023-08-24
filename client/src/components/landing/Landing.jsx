@@ -1,15 +1,24 @@
 import { NavLink } from "react-router-dom";
 import style from "./landing.module.css";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { getAllVideogames } from "../../redux/actions";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllVideogames } from "../../redux/actions";
 
 const Landing = () => {
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(getAllVideogames());
-    // }, [dispatch]);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllVideogames());
+    }, [dispatch]);
+    const allVideogamesArray = useSelector((state) => state.allVideogamesArray);
 
+    useEffect(() => {
+        if (allVideogamesArray.length > 0) {
+            console.log(
+                "allVideogamesArray is now filled:",
+                allVideogamesArray
+            );
+        }
+    }, [allVideogamesArray]);
     return (
         <main className={style.landing}>
             <section className={style.body}>

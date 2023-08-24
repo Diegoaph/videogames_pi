@@ -1,34 +1,39 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllVideogames, updateRenderArray } from "../../redux/actions";
 import Nav from "../nav/Nav";
 import Card from "../card/Card";
 import style from "./cards.module.css";
 
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { getAllVideogames, updateRenderArray } from "../../redux/actions";
+
 const Cards = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getAllVideogames());
-    }, [dispatch]);
-
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(getAllVideogames());
+    // }, [dispatch]);
     const [page, setPage] = useState(1);
     const [selectedGenre, setSelectedGenre] = useState("");
     const [selectedSource, setSelectedSource] = useState("");
     const [selectedSort, setSelectedSort] = useState("");
-
     const toRenderArray = useSelector((state) => state.toRenderArray);
-    const allVideogamesArray = useSelector((state) => state.allVideogamesArray);
-    const [pages, setPages] = useState(Math.ceil(allVideogamesArray.length / 15));
 
+    const allVideogamesArray = useSelector((state) => state.allVideogamesArray);
     useEffect(() => {
-        setPages(Math.ceil(allVideogamesArray.length / 15));
+        if (allVideogamesArray.length > 0) {
+            console.log(
+                "allVideogamesArray is now filled:",
+                typeof allVideogamesArray
+            );
+        }
     }, [allVideogamesArray]);
+    const [pages, setPages] = useState(
+        Math.ceil(allVideogamesArray.length / 15)
+    );
 
     const onSearch = async (name) => {
         try {
-            const response = await axios.get(`videogames/search/?name=${name}`);
+            const response = await axios(`videogames/search/?name=${name}`);
             const data = response.data;
 
             if (!data.length) {
@@ -38,7 +43,7 @@ const Cards = () => {
             }
         } catch (error) {
             console.error("Error fetching search results:", error);
-            window.alert("No videogames found");
+            window.alert("no videgames found");
         }
     };
 
@@ -80,16 +85,19 @@ const Cards = () => {
 
     switch (selectedSort) {
         case "RatingD":
-            midRender = midRender.slice().sort((a, b) => b.rating - a.rating);
+            midRender = midRender.sort((a, b) => b.rating - a.rating);
             break;
         case "RatingA":
-            midRender = midRender.slice().sort((a, b) => a.rating - b.rating);
+            midRender = midRender.sort((a, b) => a.rating - b.rating);
             break;
         case "AlfaA":
-            midRender = midRender.slice().sort((a, b) => a.name.localeCompare(b.name));
+            midRender = midRender.sort((a, b) => b.name.localeCompare(a.name));
             break;
         case "AlfaD":
-            midRender = midRender.slice().sort((a, b) => b.name.localeCompare(a.name));
+            midRender = midRender.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case "default":
+            midRender = allVideogamesArray;
             break;
         default:
             break;
@@ -97,21 +105,23 @@ const Cards = () => {
 
     switch (selectedSource) {
         case "DB":
-            midRender = midRender.filter((game) => typeof game.id === "string");
+            midRender = midRender.filter((game) => typeof game.id == "string");
             break;
         case "API":
-            midRender = midRender.filter((game) => typeof game.id === "number");
+            midRender = midRender.filter((game) => typeof game.id == "number");
+            break;
+        case "all":
+            midRender = allVideogamesArray;
             break;
         default:
             break;
     }
-
     console.log("midRender:", midRender);
+    let finalRender = midRender.slice(page * 15 - 15, page * 15);
 
-    const startIndex = (page - 1) * 15;
-    const endIndex = startIndex + 15;
-    const finalRender = midRender.slice(startIndex, endIndex);
-
+    useEffect(() => {
+        setPages(Math.ceil(allVideogamesArray.length / 15));
+    }, [finalRender, allVideogamesArray.length]);
     return (
         <main className={style.main}>
             <Nav
@@ -123,11 +133,20 @@ const Cards = () => {
 
             <section className={style.cards}>
                 {allVideogamesArray.length ? (
-                    finalRender.map(({ id, name, genres, background_image, image }) => (
-                        <div className={style.card} key={id}>
-                            <Card id={id} name={name} genres={genres} image={background_image || image} />
-                        </div>
-                    ))
+                    finalRender.map(
+                        ({ id, name, genres, background_image, image }) => (
+                            <div
+                                className={style.card}
+                                key={id}>
+                                <Card
+                                    id={id}
+                                    name={name}
+                                    genres={genres}
+                                    image={background_image || image}
+                                />
+                            </div>
+                        )
+                    )
                 ) : (
                     <div className={style.loading}>LOADING</div>
                 )}
@@ -135,22 +154,30 @@ const Cards = () => {
 
             <section className={style.paginado}>
                 {page !== 1 && (
-                    <button className={style.btn} onClick={handleFirst}>
+                    <button
+                        className={style.btn}
+                        onClick={handleFirst}>
                         ⇤
                     </button>
                 )}
                 {page !== 1 && page !== 2 && (
-                    <button className={style.btn} onClick={handlePrev}>
+                    <button
+                        className={style.btn}
+                        onClick={handlePrev}>
                         ←
                     </button>
                 )}
                 {page !== pages && page !== pages - 1 && (
-                    <button className={style.btn} onClick={handleNext}>
+                    <button
+                        className={style.btn}
+                        onClick={handleNext}>
                         →
                     </button>
                 )}
                 {page !== pages && (
-                    <button className={style.btn} onClick={handleLast}>
+                    <button
+                        className={style.btn}
+                        onClick={handleLast}>
                         ⇥
                     </button>
                 )}
@@ -158,5 +185,4 @@ const Cards = () => {
         </main>
     );
 };
-
 export default Cards;
