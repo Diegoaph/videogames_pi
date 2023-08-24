@@ -97,15 +97,14 @@
         height: rem;
         background: url(../../assets/akuaku_fondonegro.gif);
         background-position: center;
+        background-repeat: no-repeat;
     }
     .body {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        background: url(https://steamuserimages-a.akamaihd.net/ugc/785232140934287854/BC02F3DDDA6D33B533B2570609936CF56F3A5957/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false);
-        background-repeat: no-repeat;
-        background-position: center;
+
         min-height: 95vh;
         filter: drop-shadow(0 0 10px black);
     }
