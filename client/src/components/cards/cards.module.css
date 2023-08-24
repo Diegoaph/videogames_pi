@@ -4,16 +4,6 @@
     align-items: center;
     background-image: url(../../assets/controllers_wallpaper.png);
 }
-.card {
-    margin-top: 2vh;
-    width: 25vw;
-    max-width: 25vw;
-    height: calc(25vw / 1.7);
-    overflow: hidden;
-    border-radius: 2rem;
-    border: groove 1rem rgba(17, 15, 15, 0.549);
-}
-
 .loading {
     border-radius: 10px;
     padding: 20px;
@@ -37,6 +27,17 @@
         width: 9ch;
     }
 }
+
+.card {
+    margin-top: 2vh;
+    width: 25vw;
+    max-width: 25vw;
+    height: calc(25vw / 1.7);
+    overflow: hidden;
+    border-radius: 2rem;
+    border: groove 1rem rgba(17, 15, 15, 0.549);
+}
+
 .card img {
     max-width: 100%;
     max-height: 100%;

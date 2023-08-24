@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     allVideogamesArray: [],
-    //toRenderArray:[]
+    toRenderArray: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -14,7 +14,7 @@ const reducer = (state = initialState, { type, payload }) => {
         case UPDATE_RENDER_ARRAY:
             return {
                 ...state,
-                allVideogamesArray: payload,
+                toRenderArray: payload,
             };
 
         case GET_VIDEOGAMES:

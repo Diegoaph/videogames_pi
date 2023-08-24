@@ -14,7 +14,9 @@ const Create = ({}) => {
         genres: [],
         rating: "",
     });
-
+    {
+        /***********************************************/
+    }
     const handleChange = (event) => {
         setVgData({ ...vgData, [event.target.name]: event.target.value });
 
@@ -25,11 +27,16 @@ const Create = ({}) => {
         setErrors(validateErrors);
     };
 
+    {
+        /***********************************************/
+    }
     const handleDateChange = (event) => {
         const date = event.target.value.slice(0, 10);
         setVgData({ ...vgData, [event.target.name]: date });
     };
-
+    {
+        /***********************************************/
+    }
     const handleMultipleChange = (event) => {
         const selectedOptions = event.target.selectedOptions;
         const valuesArray = Array.from(selectedOptions).map(
@@ -38,15 +45,18 @@ const Create = ({}) => {
         setVgData({ ...vgData, [event.target.name]: valuesArray });
         console.log(event.target.name);
     };
-
+    {
+        /***********************************************/
+    }
     const handleOnSubmit = (event) => {
         send(vgData);
         event.preventDefault();
     };
 
     const send = async (data) => {
+        const URL = "/videogames/create";
         await axios
-            .post("/videogames/create", data)
+            .post(URL, data)
             .then((response) => {
                 console.log(response.data);
             })

@@ -1,30 +1,33 @@
-.landing {
+.landing{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     min-width: 320px;
     min-height: 480px;
     background-color: rgb(0, 0, 0);
-    background: url(ukauka_transparente.gif);
+    background: url(../../assets/akuaku_fondonegro.gif);
     background-position: center;
+
 }
-.body {
+.body{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 5vh;
 }
 
-.h1 {
+.h1{
+    
     color: rgb(198, 211, 171);
     text-decoration: none;
     text-align: center;
     font-size: medium;
     width: 30vh;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.innerbutton {
+
+.innerbutton{
     background: black;
     cursor: pointer;
     border: none;
@@ -37,7 +40,8 @@
     z-index: 2;
 }
 
-.start::before {
+.start::before{
+    
     content: "";
     position: absolute;
     top: 0;
@@ -45,19 +49,7 @@
     height: 100%;
     width: 100%;
     z-index: -10;
-    background: linear-gradient(
-        45deg,
-        blue,
-        magenta,
-        orange,
-        yellow,
-        orange,
-        magenta,
-        blue,
-        magenta,
-        orange,
-        yellow
-    );
+    background: linear-gradient(45deg,blue, magenta,orange,yellow,orange,magenta,blue, magenta,orange,yellow);
     background-size: 800%;
     border-radius: 0px;
     filter: blur(8px);
@@ -66,27 +58,32 @@
     border-radius: 40%;
 }
 
-.start {
+.start{
     width: 30lvw;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium','Arial Narrow', Arial, sans-serif;
     color: rgb(12, 15, 4);
     text-decoration: none;
+
 }
 
+
+
+
 @keyframes glow {
-    0% {
+    0%{
         background-position: 0 0;
     }
-    50% {
+    50%{
         background-position: 400% 0;
     }
-    100% {
+    100%{
         background-position: 0 0;
     }
 }
 
 @media (min-width: 340px) {
-    .landing {
+
+    .landing{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -96,7 +93,7 @@
         width: 100lvw;
         height: rem;
     }
-    .body {
+    .body{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -107,8 +104,8 @@
         min-height: 95vh;
         filter: drop-shadow(0 0 10px black);
     }
-
-    .h1 {
+    
+    .h1{
         margin-top: 60px;
         color: rgb(198, 211, 171);
         text-decoration: none;
@@ -116,10 +113,11 @@
         font-size: medium;
         width: 100vh;
         font-size: x-large;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
-
-    .innerbutton {
+    
+    
+    .innerbutton{
         background: black;
         cursor: pointer;
         border: none;
@@ -131,8 +129,9 @@
         margin: 0px;
         z-index: 2;
     }
-
-    .start::before {
+    
+    .start::before{
+        
         content: "";
         position: absolute;
         top: 0;
@@ -140,31 +139,21 @@
         height: 100%;
         width: 100%;
         z-index: -10;
-        background: linear-gradient(
-            45deg,
-            blue,
-            magenta,
-            orange,
-            yellow,
-            orange,
-            magenta,
-            blue,
-            magenta,
-            orange,
-            yellow
-        );
+        background: linear-gradient(45deg,blue, magenta,orange,yellow,orange,magenta,blue, magenta,orange,yellow);
         background-size: 800%;
         border-radius: 0px;
         filter: blur(8px);
         animation: glow 60s ease-in-out infinite;
-
+    
         border-radius: 40%;
     }
-
-    .start {
+    
+    .start{
         width: 30lvw;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-family: 'Franklin Gothic Medium','Arial Narrow', Arial, sans-serif;
         color: rgb(12, 15, 4);
         text-decoration: none;
+    
     }
+    
 }

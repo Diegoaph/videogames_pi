@@ -7,7 +7,7 @@ import {
 
 export const getAllVideogames = () => {
     return async function (dispatch) {
-        const apiData = await axios.get("/videogames");
+        const apiData = await axios.get(`/videogames`);
 
         const allVideogamesArray = apiData.data;
         dispatch({

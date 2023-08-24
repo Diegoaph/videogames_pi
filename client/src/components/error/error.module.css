@@ -1,23 +1,25 @@
-.bg {
+.bg{
     background-color: rgb(0, 0, 0);
 }
-.error {
+.error{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     min-width: 320px;
     min-height: 480px;
-    background: url(akuaku_fondonegro.gif);
+    background: url(../../assets/ukauka_transparente.gif);
     background-position: center;
+
+    
 }
-.body {
+.body{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 5vh;
 }
 
-.h1 {
+.h1{
     border-radius: 5rem;
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -25,19 +27,12 @@
     text-align: center;
     font-size: x-large;
     width: 30vh;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    background: linear-gradient(
-        90deg,
-        rgba(51, 11, 11, 0.1),
-        rgba(51, 11, 11, 0.35),
-        rgba(51, 11, 11, 0.7),
-        rgba(51, 11, 11, 0.5),
-        rgba(51, 11, 11, 0.35),
-        rgba(51, 11, 11, 0.1)
-    );
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: linear-gradient(90deg,rgba(51, 11, 11, 0.1),rgba(51, 11, 11, 0.35),rgba(51, 11, 11, 0.7),rgba(51, 11, 11, 0.5),rgba(51, 11, 11, 0.35),rgba(51, 11, 11, 0.1));
 }
 
-.innerbutton {
+
+.innerbutton{
     background: black;
     cursor: pointer;
     border: none;
@@ -50,7 +45,8 @@
     z-index: 2;
 }
 
-.home::before {
+.home::before{
+    
     content: "";
     position: absolute;
     top: 0;
@@ -58,17 +54,7 @@
     height: 100%;
     width: 100%;
     z-index: -10;
-    background: linear-gradient(
-        60deg,
-        red,
-        orange,
-        yellow,
-        orange,
-        red,
-        red,
-        orange,
-        yellow
-    );
+    background: linear-gradient(60deg, red,orange,yellow,orange,red, red,orange,yellow);
     background-size: 800%;
     border-radius: 0px;
     filter: blur(8px);
@@ -77,27 +63,32 @@
     border-radius: 40%;
 }
 
-.home {
+.home{
     width: 30lvw;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium','Arial Narrow', Arial, sans-serif;
     color: rgb(12, 15, 4);
     text-decoration: none;
+
 }
 
+
+
+
 @keyframes glow {
-    0% {
+    0%{
         background-position: 0 0;
     }
-    50% {
+    50%{
         background-position: 400% 0;
     }
-    100% {
+    100%{
         background-position: 0 0;
     }
 }
 
 @media (min-width: 340px) {
-    .error {
+
+    .error{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -107,7 +98,7 @@
         width: 100lvw;
         height: rem;
     }
-    .body {
+    .body{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -118,8 +109,8 @@
         min-height: 95vh;
         filter: drop-shadow(0 0 10px black);
     }
-
-    .h1 {
+    
+    .h1{
         margin-top: 60px;
         color: rgb(198, 211, 171);
         text-decoration: none;
@@ -127,11 +118,12 @@
         font-size: medium;
         width: 100vh;
         font-size: x-large;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         background-color: rgba(165, 42, 42, 0.596);
     }
-
-    .innerbutton {
+    
+    
+    .innerbutton{
         background: black;
         cursor: pointer;
         border: none;
@@ -143,8 +135,9 @@
         margin: 0px;
         z-index: 2;
     }
-
-    .home::before {
+    
+    .home::before{
+        
         content: "";
         position: absolute;
         top: 0;
@@ -152,29 +145,21 @@
         height: 100%;
         width: 100%;
         z-index: -10;
-        background: linear-gradient(
-            60deg,
-            red,
-            orange,
-            yellow,
-            orange,
-            red,
-            red,
-            orange,
-            yellow
-        );
+        background: linear-gradient(60deg, red,orange,yellow,orange,red, red,orange,yellow);
         background-size: 800%;
         border-radius: 0px;
         filter: blur(8px);
         animation: glow 20s ease-in-out infinite;
-
+    
         border-radius: 40%;
     }
-
-    .home {
+    
+    .home{
         width: 30lvw;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-family: 'Franklin Gothic Medium','Arial Narrow', Arial, sans-serif;
         color: rgb(12, 15, 4);
         text-decoration: none;
+    
     }
+    
 }

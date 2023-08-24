@@ -6,7 +6,7 @@ import Landing from "./components/landing/Landing.jsx";
 import Detail from "./components/detail/Detail.jsx";
 import Error from "./components/error/Error.jsx";
 import axios from "axios";
-axios.defaults.baseURL = "https://devdiego-videogames-back.up.railway.app";
+axios.defaults.baseURL = "localhost:3001";
 
 const App = () => {
     const location = useLocation();

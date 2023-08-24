@@ -1,18 +1,19 @@
-.search {
+.search{
     margin-top: 2lvh;
-    display: flex;
+    display:flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-.input {
+.input{
     border-radius: 1rem;
     height: 2.5rem;
     background-color: blanchedalmond;
     border: none;
-    padding-left: 2.5rem;
-    background-image: url(lupa.png);
+    padding-left:2.5rem;
+    background-image: url(../../assets/lupa.png);
     background-position-x: 0.5rem;
     background-position-y: center;
     background-repeat: no-repeat;
+
 }

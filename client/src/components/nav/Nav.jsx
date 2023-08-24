@@ -1,9 +1,14 @@
 import style from "./nav.module.css";
-import Search from "../search/Search";
+import Search from "../search/Search.jsx";
 import { NavLink } from "react-router-dom";
-import React from "react";
+import {
+    handleGenresChange,
+    handleSelectedSortOptionChange,
+    handleDataSourceChange,
+} from "../cards/Cards";
 import { useSelector, useDispatch } from "react-redux";
 import { updateRenderArray } from "../../redux/actions";
+
 function Nav(props) {
     const toRenderArray = useSelector((state) => state.toRenderArray);
     const allVideogamesArray = useSelector((state) => state.allVideogamesArray);
@@ -21,6 +26,7 @@ function Nav(props) {
                         Show all
                     </button>
                 </div>
+
                 <button className={style.button}>
                     <NavLink
                         className={style.create}

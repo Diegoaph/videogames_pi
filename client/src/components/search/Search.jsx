@@ -10,7 +10,7 @@ function Search(props) {
 
     const handleKeyUp = (event) => {
         if (event.keyCode === 13) {
-            // 13 is the keycode for Enter key
+            // 13 es el código de la tecla enter
             props.onSearch(search);
             setSearch("");
         }
