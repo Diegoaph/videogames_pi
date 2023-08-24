@@ -9,9 +9,9 @@ import { getAllVideogames, updateRenderArray } from "../../redux/actions";
 
 const Cards = () => {
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(getAllVideogames());
-    // }, [dispatch]);
+    useEffect(() => {
+        dispatch(getAllVideogames());
+    }, [dispatch]);
     const [page, setPage] = useState(1);
     const [selectedGenre, setSelectedGenre] = useState("");
     const [selectedSource, setSelectedSource] = useState("");
@@ -132,6 +132,7 @@ const Cards = () => {
             />
 
             <section className={style.cards}>
+                {data}
                 {allVideogamesArray.length ? (
                     finalRender.map(
                         ({ id, name, genres, background_image, image }) => (
