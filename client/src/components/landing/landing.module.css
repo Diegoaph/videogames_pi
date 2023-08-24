@@ -89,22 +89,22 @@
     .landing {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         background-color: black;
-        width: 100lvw;
-        height: rem;
+        width: 100vw; /* Corregido typo */
+        height: 100vh; /* Corregido typo */
     }
     .body {
         z-index: 5;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center; /* Cambiado de 'space-between' a 'center' */
         background: url(../../assets/akuaku_fondonegro.gif);
         background-position: center;
         background-repeat: no-repeat;
+        background-size: cover; /* Agregado para ajustar la imagen */
         min-height: 95vh;
         filter: drop-shadow(0 0 10px black);
     }
