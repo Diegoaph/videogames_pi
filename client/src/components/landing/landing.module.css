@@ -10,7 +10,6 @@
     }
 }
 
-/* @media (min-width: 340px) { */
 .landing {
     display: flex;
     flex-direction: column;
@@ -35,7 +34,7 @@
 }
 
 .h1 {
-    color: rgb(198, 211, 171);
+    color: rgb(126, 177, 17);
     text-decoration: none;
     text-align: center;
     font-size: medium;
@@ -43,7 +42,6 @@
     font-size: x-large;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     filter: drop-shadow(0 0 10px black);
-    animation: glow 60s ease-in-out infinite;
 }
 
 .innerbutton {
