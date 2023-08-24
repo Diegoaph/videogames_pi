@@ -29,19 +29,23 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 95%;
+    height: 80%;
     filter: drop-shadow(0 0 10px black);
 }
 
 .h1 {
-    color: rgb(126, 177, 17);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     text-align: center;
-    font-size: medium;
     width: 80%;
     font-size: x-large;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    filter: drop-shadow(0 0 10px black);
+    background: linear-gradient(
+        0deg,
+        rgba(22, 22, 22, 0.685),
+        rgba(22, 22, 22, 0.267),
+        rgba(22, 22, 22, 0.062)
+    );
 }
 
 .innerbutton {
