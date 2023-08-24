@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
 import style from "./landing.module.css";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getAllVideogames } from "../../redux/actions";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
+// import { getAllVideogames } from "../../redux/actions";
 
 const Landing = () => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getAllVideogames());
-    }, [dispatch]);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(getAllVideogames());
+    // }, [dispatch]);
 
     return (
         <main className={style.landing}>

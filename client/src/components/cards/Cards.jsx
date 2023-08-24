@@ -9,6 +9,9 @@ import { getAllVideogames, updateRenderArray } from "../../redux/actions";
 
 const Cards = () => {
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllVideogames());
+    }, [dispatch]);
     const [page, setPage] = useState(1);
     const [selectedGenre, setSelectedGenre] = useState("");
     const [selectedSource, setSelectedSource] = useState("");
