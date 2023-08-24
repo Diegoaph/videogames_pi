@@ -97,7 +97,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        flex-wrap: wrap;
     }
     .filters {
         margin-top: 1rem;
@@ -118,7 +118,5 @@
     .create {
         font-size: 90%;
         filter: drop-shadow(0 0 8px black);
-        color: black;
-        text-decoration: none;
     }
 }
