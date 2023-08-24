@@ -109,7 +109,7 @@ const Cards = () => {
         default:
             break;
     }
-
+    console.log("midRender:", midRender);
     let finalRender = midRender.slice(page * 15 - 15, page * 15);
 
     useEffect(() => {
