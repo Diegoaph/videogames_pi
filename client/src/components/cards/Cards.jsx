@@ -143,7 +143,6 @@ const Cards = () => {
                 ) : (
                     <div className={style.loading}>LOADING</div>
                 )}
-                ;
             </section>
 
             <section className={style.paginado}>
