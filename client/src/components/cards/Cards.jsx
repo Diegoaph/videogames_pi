@@ -8,7 +8,7 @@ import axios from "axios";
 import { getAllVideogames, updateRenderArray } from "../../redux/actions";
 
 const Cards = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // useEffect(() => {
     //     dispatch(getAllVideogames());
     // }, [dispatch]);
