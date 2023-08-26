@@ -1,4 +1,7 @@
 require("dotenv").config();
+require("./models/Genre")(sequelize);
+require("./models/Videogame")(sequelize);
+
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
