@@ -1,7 +1,7 @@
-const { DataTypes } = require("Sequelize");
+const { DataTypes } = require("sequelize");
 
-module.exports = (Sequelize) => {
-    const Genre = Sequelize.define("Genre", {
+module.exports = (sequelize) => {
+    const Genre = sequelize.define("Genre", {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
