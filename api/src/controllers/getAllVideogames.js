@@ -13,6 +13,7 @@ const getAllVideogames = async () => {
             let page = `&page=${pageNum}`;
             const url = `${VG_URL}?key=1c2a137230ce410497693405f5f9f015${page}`;
             const response = await axios.get(url);
+            console.log(response.data);
             const { results, next } = response.data;
             // de todo lo que devuelve la api, me quedo solo con el array de 20 resultados y la url de los siguientes 20
             allVideogamesArray = allVideogamesArray.concat(results);
