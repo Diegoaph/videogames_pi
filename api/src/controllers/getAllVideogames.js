@@ -2,11 +2,12 @@
 const { Videogame } = require("../db");
 const axios = require("axios");
 require("dotenv").config();
-const { VG_URL, API_KEY } = process.env;
+const { VG_URL } = process.env;
 
 const getAllVideogames = async () => {
     try {
         let allVideogamesArray = [];
+        console.log("fetchingALL-controller", VG_URL);
         let pageNum = 1;
 
         while (allVideogamesArray.length < 100) {
