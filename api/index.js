@@ -27,6 +27,6 @@ conn.sync({
     // force: false
 }).then(() => {
     server.listen(PORT, () => {
-        console.log("%server is listening at Backend port: ", PORT); // eslint-disable-line no-console
+        console.log("server is listening at Backend port: ", PORT); // eslint-disable-line no-console
     });
 });
