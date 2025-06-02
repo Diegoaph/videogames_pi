@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a5be7d8c.css",
+    "main.js": "/static/js/main.54baea66.js",
+    "static/media/ukauka_transparente.gif": "/static/media/ukauka_transparente.7b47576d22a7acf23cb4.gif",
+    "static/media/akuaku_fondonegro.gif": "/static/media/akuaku_fondonegro.d29246428c14dbb587e7.gif",
+    "static/media/controllers_wallpaper.png": "/static/media/controllers_wallpaper.192c2ca69cb813e3981e.png",
+    "index.html": "/index.html",
+    "main.a5be7d8c.css.map": "/static/css/main.a5be7d8c.css.map",
+    "main.54baea66.js.map": "/static/js/main.54baea66.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a5be7d8c.css",
+    "static/js/main.54baea66.js"
+  ]
+}

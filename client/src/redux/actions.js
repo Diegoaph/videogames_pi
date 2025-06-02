@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     GET_VIDEOGAMES,
-    POST_VIDEOGAME,
+    // POST_VIDEOGAME,
     UPDATE_RENDER_ARRAY,
 } from "./action-types";
 

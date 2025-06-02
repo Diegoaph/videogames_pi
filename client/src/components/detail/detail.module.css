@@ -3,7 +3,7 @@
   .detail {
     display: flex;
     flex-direction: column;
-    background-image: url(../../assets/controllers_wallpaper.png);
+   background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(18, 18, 18, 0.95));
     background-size: cover;
     background-repeat: repeat-y;
   }

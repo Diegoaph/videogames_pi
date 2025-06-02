@@ -132,7 +132,6 @@ const Cards = () => {
             />
 
             <section className={style.cards}>
-                {finalRender}
                 {allVideogamesArray.length ? (
                     finalRender.map(
                         ({ id, name, genres, background_image, image }) => (
