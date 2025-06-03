@@ -1,70 +1,105 @@
-require("dotenv").config();
-const { Sequelize } = require("sequelize");
+require('dotenv').config();
+const { Sequelize } = require('sequelize');
+const fs = require('fs');
+const path = require('path');
 
-const fs = require("fs");
-const path = require("path");
+let sequelize;
 
-const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT } = process.env;
+// Configuración para producción (usando DATABASE_URL)
+if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    logging: process.env.NODE_ENV === 'development' ? console.log : false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // Necesario para Neon
+      }
+    },
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+  });
+} else {
+  // Configuración para desarrollo local (usando variables individuales)
+  const requiredEnvVars = ['DB_USER', 'DB_PASSWORD', 'DB_NAME', 'DB_HOST', 'DB_PORT'];
+  requiredEnvVars.forEach((varName) => {
+    if (!process.env[varName]) {
+      throw new Error(`Falta la variable de entorno: ${varName}`);
+    }
+  });
 
-const sequelize = new Sequelize(
+  const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT } = process.env;
+
+  sequelize = new Sequelize(
     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
     {
-        logging: false, // set to console.log to see the raw SQL queries
-        native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+      logging: process.env.NODE_ENV === 'development' ? console.log : false,
+      native: false
     }
-);
-const basename = path.basename(__filename);
+  );
+}
 
+const basename = path.basename(__filename);
 const modelDefiners = [];
 
-// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
-fs.readdirSync(path.join(__dirname, "/models"))
-    .filter(
-        (file) =>
-            file.indexOf(".") !== 0 &&
-            file !== basename &&
-            file.slice(-3) === ".js"
-    )
-    .forEach((file) => {
-        modelDefiners.push(require(path.join(__dirname, "/models", file)));
-    });
+// Cargar modelos dinámicamente desde la carpeta "models"
+fs.readdirSync(path.join(__dirname, '/models'))
+  .filter((file) => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
+  .forEach((file) => {
+    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+  });
 
-// Injectamos la conexion (sequelize) a todos los modelos
+// Inyectar la conexión Sequelize en los modelos
 modelDefiners.forEach((model) => model(sequelize));
-// Capitalizamos los nombres de los modelos ie: product => Product
-let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [
-    entry[0][0].toUpperCase() + entry[0].slice(1),
-    entry[1],
-]);
+
+// Capitalizar nombres de modelos
+const entries = Object.entries(sequelize.models);
+const capsEntries = entries.map(([key, value]) => [key[0].toUpperCase() + key.slice(1), value]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
+// Relaciones entre modelos
 const { Videogame, Genre } = sequelize.models;
 
-sequelize
-    .sync({ force: false }) // Set `force` to `true` to recreate tables on every application restart
-    .then(() => {
-        console.log("Database synced");
-    })
-    .catch((error) => {
-        console.error("Error syncing database:", error);
-    });
-
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-
 Videogame.belongsToMany(Genre, {
-    through: "videogame_genres",
-    timestamps: false,
+  through: 'videogame_genres',
+  timestamps: false
 });
 Genre.belongsToMany(Videogame, {
-    through: "videogame_genres",
-    timestamps: false,
+  through: 'videogame_genres',
+  timestamps: false
 });
 
+// Función para probar la conexión
+async function testConnection() {
+  try {
+    await sequelize.authenticate();
+    console.log('✅ Conexión a la base de datos establecida correctamente.');
+  } catch (error) {
+    console.error('❌ Error al conectar con la base de datos:', error);
+    throw error;
+  }
+}
+
+// Sincronizar base de datos
+async function syncDatabase() {
+  try {
+    await testConnection();
+    await sequelize.sync({ force: false });
+    console.log('✅ Base de datos sincronizada correctamente.');
+  } catch (error) {
+    console.error('❌ Error al sincronizar la base de datos:', error);
+    throw error;
+  }
+}
+
+// Ejecutar sincronización
+syncDatabase();
+
 module.exports = {
-    ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-    conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+  ...sequelize.models, // Exportar modelos
+  conn: sequelize // Exportar conexión
 };
